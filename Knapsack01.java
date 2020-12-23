@@ -1,4 +1,4 @@
-public class Knapsack {
+public class Knapsack01 {
     public int solveKnapsack(int[] profits, int[] weights, int capacity) {
         return this.knapsackRecursive(profits, weights, capacity, 0);
     }
@@ -25,7 +25,7 @@ public class Knapsack {
     }
 
     public static void main(String[] args) {
-        Knapsack ks = new Knapsack();
+        Knapsack01 ks = new Knapsack01();
         int[] profits = {1, 6, 10, 16};
         int[] weights = {1, 2, 3, 5};
         int maxProfit = ks.solveKnapsack(profits, weights, 7);

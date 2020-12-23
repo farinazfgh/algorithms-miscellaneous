@@ -1,4 +1,4 @@
-public class KnapsackTabulation {
+public class Knapsack01Tabulation {
     /*
     we want to calculate the maximum profit for every possible capacity
     dp[i][c] will represent the maximum knapsack profit for capacity ‘c’ calculated from the first ‘i’ items.
@@ -64,7 +64,7 @@ public class KnapsackTabulation {
     }
 
     public static void main(String[] args) {
-        KnapsackTabulation ks = new KnapsackTabulation();
+        Knapsack01Tabulation ks = new Knapsack01Tabulation();
         int[] profits = {1, 6, 10, 16};
         int[] weights = {1, 2, 3, 5};
         int maxProfit = ks.solveKnapsack(profits, weights, 7);

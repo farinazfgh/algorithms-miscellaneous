@@ -1,4 +1,4 @@
-public class KnapsackMemoization {
+public class Knapsack01Memoization {
 
     public int solveKnapsack(int[] profits, int[] weights, int capacity) {
         Integer[][] dp = new Integer[profits.length][capacity + 1];
@@ -31,7 +31,7 @@ public class KnapsackMemoization {
      * total space complexity: O(N*C + N)=> O(N*C)
      */
     public static void main(String[] args) {
-        Knapsack ks = new Knapsack();
+        Knapsack01Memoization ks = new Knapsack01Memoization();
         int[] profits = {1, 6, 10, 16};
         int[] weights = {1, 2, 3, 5};
         int maxProfit = ks.solveKnapsack(profits, weights, 7);
