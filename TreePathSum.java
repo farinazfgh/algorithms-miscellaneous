@@ -1,6 +1,16 @@
 import java.util.*;
 
 public class TreePathSum {
+    static class Node {
+        final int data;
+        Node left;
+        Node right;
+
+        Node(int data) {
+            this.data = data;
+        }
+    }
+
     static Map<Node, Node> parents = new HashMap<>();
     static Node root;
     static Stack<Node> stack = new Stack<>();
@@ -84,6 +94,31 @@ public class TreePathSum {
         return currentNode.left == null && currentNode.right == null;
     }
 
+    private static int findRootToLeafPathNumbers(Node currentNode, int pathSum) {
+        if (currentNode == null) return 0;
+
+        // calculate the path number of the current node
+        pathSum = 10 * pathSum + currentNode.data;
+
+        // if the current node is a leaf, return the current path sum.
+        if (isLeaf(currentNode)) {
+            return pathSum;
+        }
+
+        // traverse the left and the right sub-tree
+        return findRootToLeafPathNumbers(currentNode.left, pathSum) + findRootToLeafPathNumbers(currentNode.right, pathSum);
+    }
+
+    public static boolean findWithGivenSequence(Node current, int[] sequence, int index) {
+        if (current == null) return false;
+
+        if (isLeaf(current)) {
+            return (current.data == sequence[index]);
+        }
+        return findWithGivenSequence(current.left, sequence, index + 1) || findWithGivenSequence(current.right, sequence, index + 1);
+
+    }
+
     public static void main(String[] args) {
         root = new Node(12);
         root.left = new Node(7);
@@ -116,15 +151,18 @@ public class TreePathSum {
         allPaths.clear();
 
 
-    }
+        System.out.println(findRootToLeafPathNumbers(root, 0));
+        int[] array1 = {12, 1, 5};
+        int[] array2 = {12, 1, 10};
+        int[] array3 = {12, 7, 9};
+        int[] array4 = {12, 7, 6};
+        int[] array5 = {12, 2, 6};
+        System.out.println(findWithGivenSequence(root, array1, 0));
+        System.out.println(findWithGivenSequence(root, array2, 0));
+        System.out.println(findWithGivenSequence(root, array3, 0));
+        System.out.println(findWithGivenSequence(root, array4, 0));
+        System.out.println(findWithGivenSequence(root, array5, 0));
 
-    static class Node {
-        final int data;
-        Node left;
-        Node right;
 
-        Node(int data) {
-            this.data = data;
-        }
     }
 }
