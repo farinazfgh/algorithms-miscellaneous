@@ -1,2 +1,2 @@
-# grokking-the-coding-interview
-educative.io
+# algorithms-miscellaneous
+techniques for solving various algorithmic problems.
