@@ -5,7 +5,7 @@ public class ValidateBST {
     static int index = 0;
 
     public static void main(String[] args) {
-        SortedArrayToBST.Node root = SortedArrayToBST.sortedArrayToBST(array, 0, array.length);
+        BinaryTreeNode root = SortedArrayToBST.sortedArrayToBST(array, 0, array.length);
         int[] array = new int[16];
 
         copyBST(array, root);
@@ -22,7 +22,7 @@ public class ValidateBST {
         return true;
     }
 
-    static void copyBST(int[] array, SortedArrayToBST.Node node) {
+    static void copyBST(int[] array, BinaryTreeNode node) {
         if (node == null) return;
         copyBST(array, node.left);
         array[index] = node.data;
@@ -30,11 +30,11 @@ public class ValidateBST {
         copyBST(array, node.right);
     }
 
-    boolean validateBST(SortedArrayToBST.Node n) {
+    boolean validateBST(BinaryTreeNode n) {
         return validateBST(n, null, null);
     }
 
-    boolean validateBST(SortedArrayToBST.Node current, Integer max, Integer min) {
+    boolean validateBST(BinaryTreeNode current, Integer max, Integer min) {
         if (current == null) return true;
         if ((min != null && current.data <= min) || (max != null && current.data > max)) return false;
         return validateBST(current.left, current.data, min) && validateBST(current.right, max, current.data);
