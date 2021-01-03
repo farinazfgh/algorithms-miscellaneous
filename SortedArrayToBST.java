@@ -15,8 +15,10 @@ public class SortedArrayToBST {
     static Node head;
 
     static Node sortedArrayToBST(int[] array, int low, int high) {
-        if (low >= high) return null;
+        if (low > high) return null;
         int mid = (low + high) / 2;
+        if (mid == array.length) return null;
+        System.out.println("low:" + low + ", high:" + high + ", mid:" + mid);
         Node node = new Node(array[mid]);
         node.left = sortedArrayToBST(array, low, mid - 1);
         node.right = sortedArrayToBST(array, mid + 1, high);
