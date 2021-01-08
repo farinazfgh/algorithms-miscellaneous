@@ -61,51 +61,6 @@ public class Leastsignificantdigitfirst {
         }
     }
 
-    public static void sortByFirstCharacter(String[] array) {
-        int n = array.length;
-        int Radix = 256;   // extend ASCII alphabet size
-        String[] aux = new String[n]; //space complexity: O(n) a helper array
-
-        // we start with the right most character whic is the least significant one
-        // compute frequency counts
-
-        int[] count = new int[Radix + 1];
-        for (String s : array) {
-            count[s.charAt(0) + 1]++;
-        }
-
-           /*
-            compute cumulates
-            Now the next step is called
-            computing cumulates,
-            we go through the count array,
-            we add the current one to the sum computed so far.
-            we had two a's and three b's. So that means that there's five letters less than c,
-
-            these cumulates tell us where the d's go in the output. There's 6 keys less than d,
-            and 8 keys less than e, so the d's have to go in a[6] and a[7].
-
-            the next step, access the cumulates, using the key as index to move items.
-            So we're going to go to count[0], So when i is 0, we're looking at the d. The count array corresponding to d has 6,
-            so it says, just put d in there, and "increment that". That means if you have another d,
-            it's going to go into 7.
-             */
-        for (int r = 0; r < Radix; r++) {
-            count[r + 1] += count[r];
-        }
-        printArray(count);
-
-        // move data
-        for (String str : array) {
-            int temp = count[str.charAt(0)];
-            aux[temp] = str;
-            count[str.charAt(0)] = count[str.charAt(0)] + 1;
-        }
-
-        // copy back
-        System.arraycopy(aux, 0, array, 0, n);
-    }
-
     static void printArray(int[] array) {
         for (int value : array)
             System.out.print(value + " , ");
@@ -175,9 +130,8 @@ public class Leastsignificantdigitfirst {
         int numberofCharactersPerStr = a[0].length();
         for (String value : a) assert value.length() == numberofCharactersPerStr : "Strings must have fixed length";
 
-        // sort the strings
-        //  sort(a, numberofCharactersPerStr);
-        sortByFirstCharacter(a);
+        // sort the strings        sortByFirstCharacter(a);
+        sort(a, numberofCharactersPerStr);
 
         // print results
         for (String s : a) System.out.println(s);
